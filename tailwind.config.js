@@ -1,9 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -14,18 +15,27 @@ module.exports = {
       },
       colors: {
         maroon: {
-          '50': '#fdf2f4',
-          '100': '#fce7eb',
-          '200': '#f8d0d7',
-          '300': '#f2a9b8',
-          '400': '#e97792',
-          '500': '#db4d70',
-          '600': '#c52b50',
-          '700': '#a62141',
-          '800': '#8a1e38',
-          '900': '#741c32',
-          '950': '#410b18',
+          '50': '#fef2f2',
+          '100': '#fee2e2',
+          '200': '#fecaca',
+          '300': '#fca5a5',
+          '400': '#f87171',
+          '500': '#ef4444',
+          '600': '#dc2626',
+          '700': '#b91c1c',
+          '800': '#991b1b',
+          '900': '#7f1d1d',
+          '950': '#450a0a',
         },
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { transform: 'translateX(-100%) skewX(-20deg)' },
+          '100%': { transform: 'translateX(300%) skewX(-20deg)' },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 1.5s infinite',
       },
     },
   },

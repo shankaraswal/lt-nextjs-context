@@ -94,7 +94,7 @@ export default function Home() {
                   <button 
                     onClick={() => setGridColumns(3)}
                     className={`p-3 ${gridColumns === 3 
-                      ? 'bg-red-800 text-white shadow-inner scale-105' 
+                      ? 'bg-maroon-800 text-white shadow-inner scale-105' 
                       : 'text-gray-700 hover:bg-slate-300'}`}
                     title="3 columns"
                   >
@@ -103,7 +103,7 @@ export default function Home() {
                   <button 
                     onClick={() => setGridColumns(4)}
                     className={`p-3 ${gridColumns === 4 
-                      ? 'bg-red-800 text-white shadow-inner scale-105' 
+                      ? 'bg-maroon-800 text-white shadow-inner scale-105' 
                       : 'text-gray-700 hover:bg-slate-300'}`}
                     title="4 columns"
                   >
@@ -119,7 +119,7 @@ export default function Home() {
                 <button 
                   onClick={() => setViewMode('grid')}
                   className={`p-3 ${viewMode === 'grid' 
-                    ? 'bg-red-800 text-white shadow-inner scale-105' 
+                    ? 'bg-maroon-800 text-white shadow-inner scale-105' 
                     : 'text-gray-700 hover:bg-slate-300'}`}
                   title="Grid view"
                 >
@@ -128,7 +128,7 @@ export default function Home() {
                 <button 
                   onClick={() => setViewMode('list')}
                   className={`p-3 ${viewMode === 'list' 
-                    ? 'bg-red-800 text-white shadow-inner scale-105' 
+                    ? 'bg-maroon-800 text-white shadow-inner scale-105' 
                     : 'text-gray-700 hover:bg-slate-300'}`}
                   title="List view"
                 >
@@ -156,9 +156,11 @@ export default function Home() {
         </div>
 
         {loadingMore && (
-          <div className="flex justify-center py-8">
-            <div className="h-2 w-24 bg-gray-200 rounded-full overflow-hidden">
-              <div className="h-full bg-red-700 animate-pulse rounded-full"></div>
+          <div className="fixed bottom-0 left-0 w-full h-2 bg-slate-200 z-30">
+            <div className="h-full w-full bg-maroon-700 relative overflow-hidden">
+              <div className="absolute inset-0 w-full">
+                <div className="absolute left-0 top-0 h-full w-1/3 bg-white opacity-20 animate-shimmer bg-gradient-to-r from-transparent via-white to-transparent -skew-x-20" />
+              </div>
             </div>
           </div>
         )}
