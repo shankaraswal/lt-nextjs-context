@@ -42,8 +42,9 @@ export default function Home() {
         return;
       }
 
-      const enhancedProducts = data.products.map((product: Product) => ({
+      const enhancedProducts = data.products.map((product: Product, index: number) => ({
         ...product,
+        id: page > 0 ? product.id + (page * 1000) : product.id,
         discountPercentage: product.discountPercentage || Math.floor(Math.random() * 20) + 1,
         rating: product.rating || (Math.random() * 3 + 2).toFixed(1)
       }));
@@ -146,9 +147,9 @@ export default function Home() {
               : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
             : 'grid-cols-1 gap-y-12'
         }`}>
-          {products.map((product) => (
+          {products.map((product, index) => (
             <ProductCard
-              key={product.id}
+              key={`product-${product.id}-${index}`}
               product={product}
               viewMode={viewMode}
             />
