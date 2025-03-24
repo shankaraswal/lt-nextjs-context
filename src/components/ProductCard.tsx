@@ -31,12 +31,7 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
     <div className={`bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow my-4 overflow-hidden ${
       isGridView ? 'w-full' : 'flex'
     }`}>
-      <div className={`relative p-3 pt-8 ${isGridView ? 'h-64' : 'h-60 w-60'}`}>
-        {discountPercentage > 0 && (
-          <div className="absolute top-3 left-3 z-10 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
-            {Math.round(discountPercentage)}% OFF
-          </div>
-        )}
+      <div className={`relative p-4 ${isGridView ? 'h-64' : 'h-60 w-60'}`}>
         <div className="w-full h-full rounded-md overflow-hidden">
           <img
             src={product.thumbnail}
@@ -44,10 +39,11 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
+     
       </div>
       
       <div className={`p-6 ${isGridView ? '' : 'flex-1 flex flex-col justify-between'}`}>
-        <div>
+        <div className="relative">
           <div className="text-sm text-gray-500 mb-2">{product.brand}</div>
           <h3 className="text-base font-medium text-gray-800 mb-3">
             {product.title}
@@ -61,6 +57,11 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
           </div>
           
           {!isGridView && <p className="text-sm text-gray-600 mb-4">{product.description.slice(0, 100)}...</p>}
+          {discountPercentage > 0 && (
+          <div className="absolute  right-1 z-10 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
+            {Math.round(discountPercentage)}% OFF
+          </div>
+        )}
         </div>
         
         <div>
