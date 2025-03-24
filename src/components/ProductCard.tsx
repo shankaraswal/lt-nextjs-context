@@ -44,17 +44,20 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
-        {discountPercentage > 0 && (
-          <div className="absolute bottom-8 left-8 z-10 bg-maroon-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
-            {Math.round(discountPercentage)}% OFF
-          </div>
-        )}
+     
       </div>
       
       <div className={`p-6 ${isGridView ? '' : 'flex-1 flex flex-col justify-between'}`}>
+        <div className="flex justify-between items-center my-4"  >
+          {discountPercentage > 0 && (
+            <div className="text-white  text-sm font-semibold border bg-slate-600 px-3 py-1 rounded-full   w-fit   flex justify-end">
+            {Math.round(discountPercentage)}% OFF
+          </div>
+        )}
+        <div className="text-sm font-medium text-gray-500 mb-2">{product.brand}</div>
+        </div>
         <div>
-          <div className="text-sm text-gray-500 mb-2">{product.brand}</div>
-          <h3 className="text-base font-medium text-gray-800 mb-3">
+          <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-2">
             {product.title}
           </h3>
           
@@ -68,9 +71,9 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
           {!isGridView && <p className="text-sm text-gray-600 mb-4">{product.description.slice(0, 100)}...</p>}
         </div>
         
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <span className="font-semibold text-gray-900">
+        <div className="flex justify-between items-center">
+          <div className="flex flex-col">
+            <span className="font-bold text-xl text-gray-900">
               {formattedDiscountedPrice}
             </span>
             {discountPercentage > 0 && (
@@ -82,7 +85,7 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
           
           <button 
             onClick={() => addToCart(product)}
-            className="w-full bg-maroon-700 text-white py-2.5 px-4 rounded-md hover:bg-maroon-800 transition-colors text-sm"
+            className="bg-red-800 hover:bg-red-900 text-white py-2 px-4 rounded-md transition-colors text-sm font-medium"
           >
             Add to Cart
           </button>
