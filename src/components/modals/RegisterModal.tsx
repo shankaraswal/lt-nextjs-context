@@ -56,11 +56,12 @@ export default function RegisterModal() {
   if (!registerModalOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-      onClick={handleOverlayClick}
-    >
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Overlay background with 60% opacity */}
+      <div className="fixed inset-0 bg-black opacity-60" onClick={handleOverlayClick}></div>
+      
+      {/* Modal content - not affected by opacity */}
+      <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full overflow-hidden z-10">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800">Create Account</h2>
