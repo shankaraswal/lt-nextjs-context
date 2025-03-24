@@ -90,24 +90,24 @@ export default function Home() {
             {viewMode === 'grid' && (
               <div className="flex items-center">
                 <span className="text-sm text-gray-500 mr-2 hidden sm:inline">Columns:</span>
-                <div className="bg-slate-200 rounded-lg overflow-hidden flex mr-2 border border-slate-300">
+                <div className="bg-gray-100 rounded-lg overflow-hidden flex mr-2 border border-gray-200">
                   <button 
                     onClick={() => setGridColumns(3)}
-                    className={`p-3 ${gridColumns === 3 
-                      ? 'bg-maroon-800 text-white shadow-inner scale-105' 
-                      : 'text-gray-700 hover:bg-slate-300'}`}
+                    className={`p-3 cursor-pointer ${gridColumns === 3 
+                      ? 'bg-slate-800 text-white' 
+                      : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                     title="3 columns"
                   >
-                    <BsGrid3X3 size={20} className={gridColumns === 3 ? 'text-yellow-100' : ''} />
+                    <BsGrid3X3 size={20} />
                   </button>
                   <button 
                     onClick={() => setGridColumns(4)}
-                    className={`p-3 ${gridColumns === 4 
-                      ? 'bg-maroon-800 text-white shadow-inner scale-105' 
-                      : 'text-gray-700 hover:bg-slate-300'}`}
+                    className={`p-3 cursor-pointer ${gridColumns === 4 
+                      ? 'bg-slate-800 text-white' 
+                      : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                     title="4 columns"
                   >
-                    <BsGridFill size={20} className={gridColumns === 4 ? 'text-yellow-100' : ''} />
+                    <BsGridFill size={20} />
                   </button>
                 </div>
               </div>
@@ -115,24 +115,24 @@ export default function Home() {
             
             <div className="flex items-center">
               <span className="text-sm text-gray-500 mr-2 hidden sm:inline">View:</span>
-              <div className="bg-slate-200 rounded-lg overflow-hidden flex border border-slate-300">
+              <div className="bg-gray-100 rounded-lg overflow-hidden flex border border-gray-200">
                 <button 
                   onClick={() => setViewMode('grid')}
-                  className={`p-3 ${viewMode === 'grid' 
-                    ? 'bg-maroon-800 text-white shadow-inner scale-105' 
-                    : 'text-gray-700 hover:bg-slate-300'}`}
+                  className={`p-3 cursor-pointer ${viewMode === 'grid' 
+                    ? 'bg-slate-800 text-white' 
+                    : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                   title="Grid view"
                 >
-                  <BsGrid3X3Gap size={20} className={viewMode === 'grid' ? 'text-yellow-100' : ''} />
+                  <BsGrid3X3Gap size={20} />
                 </button>
                 <button 
                   onClick={() => setViewMode('list')}
-                  className={`p-3 ${viewMode === 'list' 
-                    ? 'bg-maroon-800 text-white shadow-inner scale-105' 
-                    : 'text-gray-700 hover:bg-slate-300'}`}
+                  className={`p-3 cursor-pointer ${viewMode === 'list' 
+                    ? 'bg-slate-800 text-white' 
+                    : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                   title="List view"
                 >
-                  <BsGrid size={20} className={viewMode === 'list' ? 'text-yellow-100' : ''} />
+                  <BsGrid size={20} />
                 </button>
               </div>
             </div>
