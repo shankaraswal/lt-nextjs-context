@@ -1,3 +1,7 @@
+'use client';
+
+import { useCart } from '@/context/CartContext';
+
 interface Product {
   id: number;
   title: string;
@@ -16,6 +20,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, viewMode }: ProductCardProps) {
+  const { addToCart } = useCart();
   const isGridView = viewMode === 'grid';
   
   // Calculate discounted price
@@ -28,10 +33,10 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
   const formattedDiscountedPrice = `$${discountedPrice.toFixed(2)}`;
 
   return (
-    <div className={`bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow my-4 overflow-hidden ${
+    <div className={`bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 mt-8 mb-4 overflow-hidden ${
       isGridView ? 'w-full' : 'flex'
-    }`}>
-      <div className={`relative p-4 ${isGridView ? 'h-64' : 'h-60 w-60'}`}>
+    } hover:bg-slate-50`}>
+      <div className={`relative pt-8 px-4 pb-4 ${isGridView ? 'h-72' : 'h-64 w-64'}`}>
         <div className="w-full h-full rounded-md overflow-hidden">
           <img
             src={product.thumbnail}
@@ -39,11 +44,15 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
-     
+        {discountPercentage > 0 && (
+          <div className="absolute bottom-8 left-8 z-10 bg-maroon-700 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
+            {Math.round(discountPercentage)}% OFF
+          </div>
+        )}
       </div>
       
       <div className={`p-6 ${isGridView ? '' : 'flex-1 flex flex-col justify-between'}`}>
-        <div className="relative">
+        <div>
           <div className="text-sm text-gray-500 mb-2">{product.brand}</div>
           <h3 className="text-base font-medium text-gray-800 mb-3">
             {product.title}
@@ -57,15 +66,10 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
           </div>
           
           {!isGridView && <p className="text-sm text-gray-600 mb-4">{product.description.slice(0, 100)}...</p>}
-          {discountPercentage > 0 && (
-          <div className="absolute  right-1 z-10 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
-            {Math.round(discountPercentage)}% OFF
-          </div>
-        )}
         </div>
         
         <div>
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-4">
             <span className="font-semibold text-gray-900">
               {formattedDiscountedPrice}
             </span>
@@ -75,6 +79,13 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
               </span>
             )}
           </div>
+          
+          <button 
+            onClick={() => addToCart(product)}
+            className="w-full bg-maroon-700 text-white py-2.5 px-4 rounded-md hover:bg-maroon-800 transition-colors text-sm"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

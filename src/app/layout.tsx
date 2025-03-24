@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
+import LoginModal from "@/components/modals/LoginModal";
+import RegisterModal from "@/components/modals/RegisterModal";
+import CartDrawer from "@/components/cart/CartDrawer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,12 +28,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <div className="flex-grow">
-            {children}
-          </div>
-          <Footer />
-        </div>
+        <AuthProvider>
+          <CartProvider>
+            <div className="flex flex-col min-h-screen">
+              <div className="flex-grow">
+                {children}
+              </div>
+              <Footer />
+            </div>
+            <CartDrawer />
+            <LoginModal />
+            <RegisterModal />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );
