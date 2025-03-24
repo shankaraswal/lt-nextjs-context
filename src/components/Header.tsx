@@ -2,16 +2,10 @@
 
 import Link from 'next/link';
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineUser } from 'react-icons/ai';
-import { BsGrid3X3, BsGrid } from 'react-icons/bs';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 
-interface HeaderProps {
-  viewMode?: 'grid' | 'list';
-  onViewModeChange?: (mode: 'grid' | 'list') => void;
-}
-
-export default function Header({ viewMode, onViewModeChange }: HeaderProps) {
+export default function Header() {
   const { toggleCart, getCartCount } = useCart();
   const { isAuthenticated, user, toggleLoginModal } = useAuth();
   
@@ -38,26 +32,6 @@ export default function Header({ viewMode, onViewModeChange }: HeaderProps) {
           
           {/* Actions */}
           <div className="flex items-center space-x-6">
-            {/* View mode toggles - only show if onViewModeChange is provided */}
-            {onViewModeChange && viewMode && (
-              <div className="hidden sm:flex space-x-3 border-r border-slate-700 pr-6">
-                <button 
-                  onClick={() => onViewModeChange('grid')}
-                  className={`p-2 rounded ${viewMode === 'grid' ? 'bg-maroon-700 text-white' : 'text-slate-400 hover:text-white'}`}
-                  title="Grid view"
-                >
-                  <BsGrid3X3 size={18} />
-                </button>
-                <button 
-                  onClick={() => onViewModeChange('list')}
-                  className={`p-2 rounded ${viewMode === 'list' ? 'bg-maroon-700 text-white' : 'text-slate-400 hover:text-white'}`}
-                  title="List view"
-                >
-                  <BsGrid size={18} />
-                </button>
-              </div>
-            )}
-            
             {/* Search */}
             <button 
               className="p-2 rounded-full hover:bg-slate-800 transition-colors"
