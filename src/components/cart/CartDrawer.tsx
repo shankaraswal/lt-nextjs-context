@@ -37,9 +37,11 @@ export default function CartDrawer() {
       {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed inset-0 z-40"
           onClick={closeCart}
-        />
+        >
+          <div className="absolute inset-0 bg-black opacity-60"></div>
+        </div>
       )}
       
       {/* Cart Drawer */}

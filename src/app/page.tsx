@@ -23,7 +23,7 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [gridColumns, setGridColumns] = useState<3 | 4>(3);
+  const [gridColumns, setGridColumns] = useState<3 | 4>(4);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);

@@ -48,7 +48,7 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
           />
         </div>
         {discountPercentage > 0 && (
-          <div className="absolute bottom-6 left-6 z-10 bg-teal-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
+          <div className="absolute top-6 left-6 z-10 bg-teal-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
             {roundedDiscount}% OFF
           </div>
         )}
