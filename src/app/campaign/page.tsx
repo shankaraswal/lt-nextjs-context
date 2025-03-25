@@ -38,12 +38,11 @@ async function getMemeTemplates(): Promise<MemeTemplate[]> {
       throw new Error('API returned unsuccessful response');
     }
     
-    // Get a random selection of 8 memes for promotional banners
-    const randomMemes = [...data.data.memes]
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 8);
+    // Instead of random selection which could cause hydration errors,
+    // select the first 8 memes or use a stable selection algorithm
+    const selectedMemes = data.data.memes.slice(0, 8);
     
-    return randomMemes;
+    return selectedMemes;
   } catch (error) {
     console.error('Error fetching meme templates:', error);
     return [];
