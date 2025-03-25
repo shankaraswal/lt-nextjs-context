@@ -33,9 +33,29 @@ module.exports = {
           '0%': { transform: 'translateX(-100%) skewX(-20deg)' },
           '100%': { transform: 'translateX(300%) skewX(-20deg)' },
         },
+        'loading-bar': {
+          '0%': { transform: 'scaleX(0)' },
+          '49.99%': { transform: 'scaleX(1)' },
+          '50%': { transform: 'scaleX(1) translateX(0)' },
+          '100%': { transform: 'scaleX(1) translateX(100%)' },
+        },
+        'loading-shine': {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' }
+        },
+        pulse: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0.5 },
+        },
       },
       animation: {
         shimmer: 'shimmer 1.5s infinite',
+        'loading-bar': 'loading-bar 2s cubic-bezier(0.85, 0, 0.15, 1) infinite',
+        'loading-shine': 'loading-shine 2s linear infinite',
+        pulse: 'pulse 1.5s ease-in-out infinite',
+      },
+      backgroundSize: {
+        'size-200': '200% 100%',
       },
     },
   },

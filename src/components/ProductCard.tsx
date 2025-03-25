@@ -31,6 +31,9 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
   // Format prices
   const formattedOriginalPrice = `$${originalPrice.toFixed(2)}`;
   const formattedDiscountedPrice = `$${discountedPrice.toFixed(2)}`;
+  
+  // Pre-calculate rounded discount to ensure consistent server/client rendering
+  const roundedDiscount = Math.round(discountPercentage);
 
   return (
     <div className={`bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-all duration-300 mt-8 mb-4 overflow-hidden ${
@@ -44,19 +47,18 @@ export default function ProductCard({ product, viewMode }: ProductCardProps) {
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
         </div>
-     
+        {discountPercentage > 0 && (
+          <div className="absolute top-6 left-6 z-10 bg-teal-600 text-white text-xs font-semibold px-3 py-1.5 rounded-md">
+            {roundedDiscount}% OFF
+          </div>
+        )}
       </div>
       
       <div className={`p-6 ${isGridView ? '' : 'flex-1 flex flex-col justify-between'}`}>
-        <div className="flex justify-between items-center my-4"  >
-          {discountPercentage > 0 && (
-            <div className="text-white  text-sm font-semibold border bg-slate-600 px-3 py-1 rounded-full   w-fit   flex justify-end">
-            {Math.round(discountPercentage)}% OFF
-          </div>
-        )}
-        <div className="text-sm font-medium text-gray-500 mb-2">{product.brand}</div>
-        </div>
         <div>
+          <div className="uppercase tracking-wider text-xs font-medium text-gray-600 mb-2 bg-gray-100 w-fit px-2 py-1 rounded">
+            {product.brand}
+          </div>
           <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-2">
             {product.title}
           </h3>

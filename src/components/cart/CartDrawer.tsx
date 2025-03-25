@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
 import { IoClose } from 'react-icons/io5';
@@ -10,6 +10,13 @@ import Link from 'next/link';
 export default function CartDrawer() {
   const { cartItems, isOpen, closeCart, removeFromCart, updateQuantity, getCartTotal, getCartCount } = useCart();
   const { isAuthenticated, toggleLoginModal } = useAuth();
+  // Add client-side only state to prevent hydration mismatch
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Set isMounted to true once component is mounted on client
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Prevent body scrolling when cart is open
   useEffect(() => {
@@ -32,21 +39,29 @@ export default function CartDrawer() {
     }
   };
 
+  // Pre-calculate any values that might cause hydration errors
+  const cartItemCount = isMounted ? getCartCount() : 0;
+  const cartTotalAmount = isMounted ? getCartTotal().toFixed(2) : "0.00";
+
   return (
     <>
       {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          className="fixed inset-0 z-40"
           onClick={closeCart}
-        />
+        >
+          <div className="absolute inset-0 bg-black opacity-60"></div>
+        </div>
       )}
       
       {/* Cart Drawer */}
       <div className={`fixed top-0 right-0 h-full w-full md:w-96 bg-white z-50 transform transition-transform duration-300 ease-in-out shadow-2xl ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex flex-col h-full p-5">
           <div className="flex justify-between items-center pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-800">Your Cart ({getCartCount()})</h2>
+            <h2 className="text-xl font-semibold text-gray-800">
+              {isMounted ? `Your Cart (${cartItemCount})` : 'Your Cart'}
+            </h2>
             <button 
               onClick={closeCart}
               className="p-2 rounded-full hover:bg-gray-100"
@@ -55,7 +70,7 @@ export default function CartDrawer() {
             </button>
           </div>
           
-          {cartItems.length === 0 ? (
+          {!isMounted || cartItems.length === 0 ? (
             <div className="flex-grow flex flex-col items-center justify-center text-center">
               <p className="text-gray-500 mb-4">Your cart is empty</p>
               <button 
@@ -72,8 +87,12 @@ export default function CartDrawer() {
                   // Calculate discounted price
                   const price = item.price;
                   const discount = item.discountPercentage || 0;
+                  // Pre-calculate to avoid hydration mismatch
                   const discountedPrice = price - (price * (discount / 100));
                   const itemTotal = discountedPrice * item.quantity;
+                  // Format to ensure consistency
+                  const formattedItemTotal = itemTotal.toFixed(2);
+                  const formattedOriginalTotal = (price * item.quantity).toFixed(2);
                   
                   return (
                     <div key={item.id} className="flex border-b border-gray-100 pb-4">
@@ -116,10 +135,10 @@ export default function CartDrawer() {
                           </div>
                           
                           <div className="text-right">
-                            <div className="text-sm font-semibold">${itemTotal.toFixed(2)}</div>
+                            <div className="text-sm font-semibold">${formattedItemTotal}</div>
                             {discount > 0 && (
                               <div className="text-xs text-gray-500 line-through">
-                                ${(price * item.quantity).toFixed(2)}
+                                ${formattedOriginalTotal}
                               </div>
                             )}
                           </div>
@@ -133,7 +152,7 @@ export default function CartDrawer() {
               <div className="border-t border-gray-200 pt-4 mt-auto">
                 <div className="flex justify-between mb-4">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">${getCartTotal().toFixed(2)}</span>
+                  <span className="font-medium">${cartTotalAmount}</span>
                 </div>
                 
                 <div className="flex flex-col space-y-2">
