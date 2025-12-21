@@ -36,7 +36,7 @@ export default function Header() {
             href="/"
             className="text-2xl font-bold text-white hover:text-maroon-200 transition-colors"
           >
-            sASWAL's
+            sASWAL&apos;s
           </Link>
 
           {/* Navigation links - hidden on mobile */}
