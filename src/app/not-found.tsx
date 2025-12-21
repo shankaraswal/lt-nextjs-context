@@ -21,7 +21,7 @@ export default function NotFound() {
                     </h1>
 
                     <p className="text-lg text-gray-600 mb-6">
-                        We're working hard to bring you something amazing. This page is currently under construction.
+                        We&apos;re working hard to bring you something amazing. This page is currently under construction.
                     </p>
 
                     <div className="flex items-center justify-center mb-8">

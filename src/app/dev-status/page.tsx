@@ -39,8 +39,8 @@ const features: FeatureStatus[] = [
     { name: 'Cart Page', status: 'completed', description: 'Dedicated cart management page', priority: 'high', category: 'Pages' },
     { name: 'Contact Page', status: 'completed', description: 'Contact form and information', priority: 'medium', category: 'Pages' },
     { name: 'Campaign Page', status: 'completed', description: 'Meme-inspired promotions', priority: 'low', category: 'Pages' },
-    { name: 'About Page', status: 'not-started', description: 'Company information and story', priority: 'medium', category: 'Pages' },
-    { name: 'Checkout Page', status: 'not-started', description: 'Order completion and payment', priority: 'high', category: 'Pages' },
+    { name: 'About Page', status: 'completed', description: 'Company information and story', priority: 'medium', category: 'Pages' },
+    { name: 'Checkout Page', status: 'completed', description: 'Order completion and payment form', priority: 'high', category: 'Pages' },
 
     // Backend Integration
     { name: 'API Integration', status: 'completed', description: 'DummyJSON API for products', priority: 'high', category: 'Backend' },
@@ -50,7 +50,9 @@ const features: FeatureStatus[] = [
     { name: 'Inventory Management', status: 'planned', description: 'Stock tracking and updates', priority: 'medium', category: 'Backend' },
 
     // Performance & SEO
-    { name: 'Image Optimization', status: 'completed', description: 'Next.js Image component usage', priority: 'medium', category: 'Performance' },
+    { name: 'Image Optimization', status: 'completed', description: 'Next.js Image component usage with proper domains', priority: 'medium', category: 'Performance' },
+    { name: 'Code Quality', status: 'completed', description: 'ESLint errors fixed, TypeScript compliance', priority: 'high', category: 'Performance' },
+    { name: 'Build Optimization', status: 'completed', description: 'Clean production builds without warnings', priority: 'high', category: 'Performance' },
     { name: 'SEO Optimization', status: 'in-progress', description: 'Meta tags and structured data', priority: 'medium', category: 'Performance' },
     { name: 'Performance Monitoring', status: 'not-started', description: 'Analytics and performance tracking', priority: 'low', category: 'Performance' },
     { name: 'Caching Strategy', status: 'not-started', description: 'API and static content caching', priority: 'medium', category: 'Performance' },
@@ -137,7 +139,7 @@ export default function DevStatusPage() {
             <main className="container mx-auto px-4 py-8">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Development Status</h1>
-                    <p className="text-gray-600">Track the progress of sASWAL's features and development milestones</p>
+                    <p className="text-gray-600">Track the progress of sASWAL&apos;s features and development milestones</p>
                 </div>
 
                 {/* Project Overview */}
@@ -145,7 +147,7 @@ export default function DevStatusPage() {
                     <h2 className="text-xl font-semibold text-gray-900 mb-4">Project Overview</h2>
                     <div className="prose text-gray-700 leading-relaxed">
                         <p className="mb-3">
-                            <strong>sASWAL's </strong> is a modern e-commerce platform built with Next.js 15 and React 19,
+                            <strong>sASWAL&apos;s </strong> is a modern e-commerce platform built with Next.js 15 and React 19,
                             showcasing the latest web development technologies and best practices.
                         </p>
                         <p className="mb-3">
