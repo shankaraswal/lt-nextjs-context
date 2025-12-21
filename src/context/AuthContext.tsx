@@ -28,7 +28,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
-  
+
   // Check for saved user on component mount
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -40,20 +40,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     }
   }, []);
-  
+
   const login = async (email: string, password: string): Promise<boolean> => {
     // For demo purposes, we'll accept any credentials
     // In a real app, this would validate against a backend
     try {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      
+
+      // Suppress unused parameter warning - password would be used in real implementation
+      void password;
+
       const mockUser = {
         id: '1',
         name: email.split('@')[0], // Use part of email as name
         email
       };
-      
+
       setUser(mockUser);
       localStorage.setItem('user', JSON.stringify(mockUser));
       setLoginModalOpen(false);
@@ -63,19 +66,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return false;
     }
   };
-  
+
   const register = async (name: string, email: string, password: string): Promise<boolean> => {
     // For demo purposes, we'll accept any registration
     try {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      
+
+      // Suppress unused parameter warning - password would be used in real implementation
+      void password;
+
       const newUser = {
         id: Date.now().toString(),
         name,
         email
       };
-      
+
       setUser(newUser);
       localStorage.setItem('user', JSON.stringify(newUser));
       setRegisterModalOpen(false);
@@ -85,26 +91,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return false;
     }
   };
-  
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
   };
-  
+
   const toggleLoginModal = () => {
     setLoginModalOpen(prev => !prev);
     if (registerModalOpen) setRegisterModalOpen(false);
   };
-  
+
   const toggleRegisterModal = () => {
     setRegisterModalOpen(prev => !prev);
     if (loginModalOpen) setLoginModalOpen(false);
   };
-  
+
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
+    <AuthContext.Provider
+      value={{
+        user,
         isAuthenticated: !!user,
         login,
         register,

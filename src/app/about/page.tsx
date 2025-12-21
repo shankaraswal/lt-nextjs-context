@@ -5,8 +5,8 @@ import Header from '@/components/Header';
 export default function AboutPage() {
   return (
     <>
-      <Header viewMode="grid" onViewModeChange={() => {}} />
-      
+      <Header />
+
       <main className="container mx-auto px-4 py-10">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">About Us</h1>
         <div className="max-w-3xl mx-auto prose prose-slate">
@@ -20,7 +20,7 @@ export default function AboutPage() {
             Each product in our collection is carefully selected for its quality, sustainability, and timeless design. We work with responsible manufacturers who share our values of craftsmanship and environmental care.
           </p>
           <p>
-            Thank you for choosing LaxiusTech. We're excited to be part of your journey towards a more intentional lifestyle.
+            Thank you for choosing LaxiusTech. We&apos;re excited to be part of your journey towards a more intentional lifestyle.
           </p>
         </div>
       </main>

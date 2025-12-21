@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Header from '@/components/Header';
 import ProductCard from '@/components/ProductCard';
 import { useInView } from 'react-intersection-observer';
@@ -29,7 +29,7 @@ export default function Home() {
   const [loadingMore, setLoadingMore] = useState(false);
   const { ref, inView } = useInView();
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       setLoadingMore(true);
       const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://dummyjson.com';
@@ -42,7 +42,7 @@ export default function Home() {
         return;
       }
 
-      const enhancedProducts = data.products.map((product: Product, index: number) => ({
+      const enhancedProducts = data.products.map((product: Product) => ({
         ...product,
         id: page > 0 ? product.id + (page * 1000) : product.id,
         discountPercentage: product.discountPercentage || Math.floor(Math.random() * 20) + 1,
@@ -60,17 +60,17 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page]);
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [fetchProducts]);
 
   useEffect(() => {
     if (inView && hasMore && !loading && !loadingMore) {
       fetchProducts();
     }
-  }, [inView, hasMore, loading, loadingMore]);
+  }, [inView, hasMore, loading, loadingMore, fetchProducts]);
 
   const allProductsLoaded = !hasMore && !loading && !loadingMore;
 
@@ -104,7 +104,7 @@ export default function Home() {
       <Header />
       <main className="container mx-auto px-4 py-10">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to sASWAL's</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to sASWAL&apos;s</h1>
           <p className="text-gray-600">Discover our collection of minimalist products</p>
         </div>
 
