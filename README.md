@@ -1,9 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# sASWAL's - Minimalist E-Commerce Platform
 
-## Getting Started
+A modern, responsive e-commerce web application built with Next.js 15, featuring a clean minimalist design and smooth user experience. This project serves as a proof of concept for a full-featured online shopping platform.
 
-First, run the development server:
+![Project Status](https://img.shields.io/badge/Status-In%20Development-yellow)
+![Next.js](https://img.shields.io/badge/Next.js-15.2.3-black)
+![React](https://img.shields.io/badge/React-19.0.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.x-38B2AC)
 
+## 🚀 Features
+
+### ✅ Completed Features
+- **Product Catalog** - Browse products with infinite scroll loading
+- **Shopping Cart** - Full cart functionality with add/remove/update quantities
+- **User Authentication** - Mock login/register system with localStorage persistence
+- **Responsive Design** - Mobile-first approach with seamless cross-device experience
+- **View Modes** - Toggle between grid (3/4 columns) and list view
+- **Loading States** - Skeleton loaders and animated progress bars
+- **Cart Persistence** - Cart items saved to localStorage
+- **Modal System** - Login and registration modals
+- **Contact Form** - Contact page with form and company information
+- **Campaign Page** - Creative meme-inspired promotions using Imgflip API
+
+### 🔄 In Progress
+- **User Profile Management** - Basic profile editing and management
+- **SEO Optimization** - Meta tags and structured data implementation
+- **Accessibility Improvements** - WCAG compliance enhancements
+
+### 📋 Planned Features
+- **Product Search & Filters** - Search by name, filter by category, price, brand
+- **Product Details Pages** - Individual product pages with detailed information
+- **Checkout Process** - Complete order flow with payment integration
+- **Real Backend Integration** - Custom API with database
+- **Order Management** - Order tracking and history
+- **Payment Processing** - Stripe/PayPal integration
+- **Dark Mode** - Theme toggle functionality
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15.2.3](https://nextjs.org/) with App Router
+- **Language**: [TypeScript 5.x](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS 4.x](https://tailwindcss.com/)
+- **State Management**: React Context API (AuthContext, CartContext)
+- **Icons**: [React Icons 5.5.0](https://react-icons.github.io/react-icons/)
+- **Animations**: [React Intersection Observer 9.16.0](https://github.com/thebuilder/react-intersection-observer)
+- **Font**: [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts)
+- **Development**: Turbopack for faster builds
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd lt-nextjs-context
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
@@ -14,23 +81,119 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root directory:
 
-## Learn More
+```env
+NEXT_PUBLIC_API_BASE_URL=https://dummyjson.com
+NEXT_PUBLIC_PROJECT_NAME=sASWAL's
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── about/             # About page (planned)
+│   ├── campaign/          # Meme-inspired promotions
+│   ├── cart/              # Shopping cart page
+│   ├── checkout/          # Checkout process (planned)
+│   ├── contact/           # Contact form page
+│   ├── dev-status/        # Development status dashboard
+│   ├── products/          # Products page (redirects to home)
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout component
+│   └── page.tsx           # Home page with product catalog
+├── components/            # Reusable React components
+│   ├── cart/              # Cart-related components
+│   ├── modals/            # Modal components
+│   ├── Footer.tsx         # Site footer
+│   ├── Header.tsx         # Navigation header
+│   └── ProductCard.tsx    # Product display component
+└── context/               # React Context providers
+    ├── AuthContext.tsx    # Authentication state management
+    └── CartContext.tsx    # Shopping cart state management
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎯 Key Pages
 
-## Deploy on Vercel
+- **Home** (`/`) - Main product catalog with infinite scroll
+- **Cart** (`/cart`) - Shopping cart management and checkout initiation
+- **Contact** (`/contact`) - Contact form and company information
+- **Campaign** (`/campaign`) - Creative promotional content with memes
+- **Dev Status** (`/dev-status`) - Development progress dashboard
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔧 Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Available Scripts
+
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+### Code Style
+
+This project uses:
+- ESLint for code linting
+- TypeScript for type safety
+- Tailwind CSS for styling
+- Functional components with React Hooks
+
+## 📊 Development Status
+
+Visit `/dev-status` in the application to see a comprehensive dashboard of:
+- Feature completion progress
+- Tech stack information
+- Development roadmap
+- Priority levels for upcoming features
+
+Current completion: **~60%** of planned features
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 API Integration
+
+Currently using [DummyJSON](https://dummyjson.com/) for product data. The application is designed to easily switch to a custom backend API.
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+The easiest way to deploy is using the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme):
+
+1. Push your code to GitHub
+2. Import your repository in Vercel
+3. Deploy with zero configuration
+
+### Other Platforms
+
+This Next.js application can be deployed on any platform that supports Node.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) for the amazing React framework
+- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS framework
+- [DummyJSON](https://dummyjson.com/) for providing mock e-commerce data
+- [Imgflip API](https://imgflip.com/api) for meme templates in campaigns
+
+---
+
+**Note**: This is a proof of concept project. For production use, implement proper authentication, payment processing, and backend integration.

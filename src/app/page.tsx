@@ -36,7 +36,7 @@ export default function Home() {
       const skip = page * 12;
       const response = await fetch(`${apiBaseUrl}/products?limit=12&skip=${skip}`);
       const data = await response.json();
-      
+
       if (data.products.length === 0) {
         setHasMore(false);
         return;
@@ -77,13 +77,12 @@ export default function Home() {
   // ProductSkeleton component for loading state
   const ProductSkeleton = ({ viewMode }: { viewMode: 'grid' | 'list' }) => {
     const isGridView = viewMode === 'grid';
-    
+
     return (
-      <div className={`bg-white rounded-lg border border-gray-200 shadow-md animate-pulse ${
-        isGridView ? 'w-full' : 'flex'
-      }`}>
+      <div className={`bg-white rounded-lg border border-gray-200 shadow-md animate-pulse ${isGridView ? 'w-full' : 'flex'
+        }`}>
         <div className={`${isGridView ? 'h-72' : 'h-64 w-64'} bg-gray-200`}></div>
-        
+
         <div className={`p-6 ${isGridView ? '' : 'flex-1'}`}>
           <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
           <div className="h-6 bg-gray-200 rounded w-3/4 mb-6"></div>
@@ -105,10 +104,10 @@ export default function Home() {
       <Header />
       <main className="container mx-auto px-4 py-10">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Products</h1>
-          <p className="text-gray-600">Browse our collection of minimalist products</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to sASWAL's</h1>
+          <p className="text-gray-600">Discover our collection of minimalist products</p>
         </div>
-        
+
         <div className="flex justify-between items-center mb-8">
           <div className="hidden sm:block text-sm text-gray-500">
             {loading ? 'Loading products...' : (
@@ -123,19 +122,19 @@ export default function Home() {
               <div className="flex items-center">
                 <span className="text-sm text-gray-500 mr-2 hidden sm:inline">Columns:</span>
                 <div className="bg-gray-100 rounded-lg overflow-hidden flex mr-2 border border-gray-200">
-                  <button 
+                  <button
                     onClick={() => setGridColumns(3)}
-                    className={`p-3 cursor-pointer ${gridColumns === 3 
-                      ? 'bg-slate-800 text-white' 
+                    className={`p-3 cursor-pointer ${gridColumns === 3
+                      ? 'bg-slate-800 text-white'
                       : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                     title="3 columns"
                   >
                     <BsGrid3X3 size={20} />
                   </button>
-                  <button 
+                  <button
                     onClick={() => setGridColumns(4)}
-                    className={`p-3 cursor-pointer ${gridColumns === 4 
-                      ? 'bg-slate-800 text-white' 
+                    className={`p-3 cursor-pointer ${gridColumns === 4
+                      ? 'bg-slate-800 text-white'
                       : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                     title="4 columns"
                   >
@@ -144,23 +143,23 @@ export default function Home() {
                 </div>
               </div>
             )}
-            
+
             <div className="flex items-center">
               <span className="text-sm text-gray-500 mr-2 hidden sm:inline">View:</span>
               <div className="bg-gray-100 rounded-lg overflow-hidden flex border border-gray-200">
-                <button 
+                <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-3 cursor-pointer ${viewMode === 'grid' 
-                    ? 'bg-slate-800 text-white' 
+                  className={`p-3 cursor-pointer ${viewMode === 'grid'
+                    ? 'bg-slate-800 text-white'
                     : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                   title="Grid view"
                 >
                   <BsGrid3X3Gap size={20} />
                 </button>
-                <button 
+                <button
                   onClick={() => setViewMode('list')}
-                  className={`p-3 cursor-pointer ${viewMode === 'list' 
-                    ? 'bg-slate-800 text-white' 
+                  className={`p-3 cursor-pointer ${viewMode === 'list'
+                    ? 'bg-slate-800 text-white'
                     : 'bg-white text-gray-700 hover:bg-gray-50'}`}
                   title="List view"
                 >
@@ -170,14 +169,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
-        <div className={`grid gap-y-8 gap-x-8 ${
-          viewMode === 'grid' 
-            ? gridColumns === 3 
-              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
-              : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-            : 'grid-cols-1 gap-y-12'
-        }`}>
+
+        <div className={`grid gap-y-8 gap-x-8 ${viewMode === 'grid'
+          ? gridColumns === 3
+            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
+            : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+          : 'grid-cols-1 gap-y-12'
+          }`}>
           {loading && !products.length ? (
             // Show skeletons while initially loading
             Array.from({ length: 12 }).map((_, index) => (
@@ -199,7 +197,7 @@ export default function Home() {
             <div className="h-4 bg-gray-200 overflow-hidden relative">
               {/* Main loading bar with animated width */}
               <div className="absolute top-0 left-0 h-full w-full bg-slate-800 animate-loading-bar origin-left"></div>
-              
+
               {/* Shine effect that moves across the bar */}
               <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-r from-slate-800 via-red-600 to-slate-800 opacity-90 animate-loading-shine"></div>
             </div>
@@ -210,10 +208,10 @@ export default function Home() {
         )}
 
         {!allProductsLoaded && <div ref={ref} className="h-10" />}
-        
+
         {allProductsLoaded ? <Footer /> : <div className="h-16"></div>}
       </main>
-      
+
       {/* Floating product count badge */}
       {!loading && products.length > 0 && (
         <div className="fixed bottom-4 right-4 bg-slate-800 text-white px-3 py-2 rounded-full shadow-lg z-40 flex items-center">
